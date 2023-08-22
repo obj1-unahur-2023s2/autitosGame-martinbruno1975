@@ -1,17 +1,44 @@
 import wollok.game.*
 import auto.*
 
-program miPrimerWollokGame {
+program juego {
 	// límites del tablero de juego
-	game.width(14)
-	game.height(8)
-
+	game.width(12)
+	game.height(12)
+	game.title("Alto juego")
+	
 	// fondo del tablero de juego
-	game.boardGround("empedrado.jpg")
-
+	//game.boardGround("empedrado.jpg")  ocupa todo el tamaño de la pantalla
+	//game.ground("empedrado.jpg")
+	
 	// agregamos a nuestro objeto auto
+	auto.position(game.at(
+		0.randomUpTo(game.width()).truncate(0),  // eje X
+		0.randomUpTo(game.height()).truncate(0)  // eje Y
+	))
 	game.addVisual(auto)
 
+	auto2.position(game.at(
+		0.randomUpTo(game.width()).truncate(0),
+		0.randomUpTo(game.height()).truncate(0)
+	))
+	game.addVisual(auto2)
+	
+	keyboard.up().onPressDo({
+		auto.arriba()
+	})
+	
+	keyboard.down().onPressDo({
+		auto.abajo()
+	})
+	
+	keyboard.right().onPressDo({
+		auto.derecha()
+	})
+	
+	keyboard.left().onPressDo({
+		auto.izquierda()
+	})
 	// que arranque el juego!
 	game.start()
 }
